@@ -8,6 +8,7 @@ public:
     Complex (double r);
     Complex(double r, double i);
     Complex (Complex c1, Complex c2);
+    Complex (Complex & c);
     Complex (const Complex & c);
 };
 Complex :: Complex (double r) {
@@ -23,8 +24,13 @@ Complex :: Complex (Complex c1, Complex c2) {
     real = c1.real+c2.real;
     imag = c1.imag+c2.imag;
 }
-Complex :: Complex (const Complex & c)  {
+Complex :: Complex (Complex & c)  {
     cout << "Copy Constructor" << endl;
+    real = c.real;
+    imag = c.imag;
+}
+Complex :: Complex (const Complex & c)  {
+    cout << "Const Copy Constructor" << endl;
     real = c.real;
     imag = c.imag;
 }
@@ -34,7 +40,8 @@ int main() {
     // Complex *pComx = new Complex(1);
     // delete pComx;
     // Complex *pArray[2] = {new Complex(1), new Complex(2, 1)};
-    Complex c1(3), c2 (c1);
+    Complex const c1(3);
+    Complex c2 (c1);
     
     return 0;
 }
